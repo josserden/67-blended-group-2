@@ -1,8 +1,13 @@
-import React from 'react';
-import { AiFillDelete } from 'react-icons/ai';
 import PropTypes from 'prop-types';
+import { Button } from 'components/Button';
+// import cn from 'classnames';
+
+import { generateRandomStatus } from 'utils/generateRandomStatus';
+import { getCurrentClass } from 'utils/getCurrentClass';
 
 export const Contact = ({ id, name, email, number, onDelete }) => {
+  const status = generateRandomStatus();
+
   return (
     <tr className="bg-gray-700">
       <td className="p-3">
@@ -15,25 +20,34 @@ export const Contact = ({ id, name, email, number, onDelete }) => {
 
           <div className="ml-3">
             <h3 className="mb-1.5">{name}</h3>
-            <div className="text-gray-400">{email}</div>
+            <a className="contactLink" href={'mailto:' + email}>
+              {email}
+            </a>
           </div>
         </div>
       </td>
-      <td className="p-3">{number}</td>
 
       <td className="p-3">
-        <span className="rounded-md bg-green-400 px-2 text-gray-50">
-          available
+        <a className="contactLink" href={'tel:' + number}>
+          {number}
+        </a>
+      </td>
+
+      <td className="p-3">
+        <span
+          // className={cn('rounded-md px-2 text-gray-50', {
+          //   'bg-green-500': status === 'online',
+          //   'bg-gray-500': status === 'offline',
+          //   'bg-red-500': status === 'busy',
+          // })}
+          className={`rounded-md px-2 text-gray-50 ${getCurrentClass(status)}`}
+        >
+          {status}
         </span>
       </td>
 
       <td className="p-3">
-        <button
-          onClick={() => onDelete(id)}
-          className="text-gray-400 transition-colors duration-300 hover:text-gray-100"
-        >
-          <AiFillDelete className="h-5 w-5" />
-        </button>
+        <Button variant="icon" onClick={() => onDelete(id)} />
       </td>
     </tr>
   );

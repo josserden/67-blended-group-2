@@ -25,3 +25,8 @@ body {
 .input {
   @apply border-0 border-b border-gray-400 bg-transparent px-0.5 transition-colors duration-300 focus:border-gray-100 focus:ring-0;
 }
+
+/* Link */
+.contactLink {
+  @apply text-gray-400 transition-colors duration-300 hover:text-gray-200;
+}

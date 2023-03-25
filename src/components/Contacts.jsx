@@ -28,6 +28,7 @@ export const Contacts = ({ contacts = [], onDelete }) => {
         {contacts.map(({ id, name, number, email }) => (
           <Contact
             key={id}
+            id={id}
             name={name}
             email={email}
             number={number}
