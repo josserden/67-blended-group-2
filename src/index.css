@@ -3,5 +3,25 @@
 @tailwind utilities;
 
 body {
-  @apply bg-gray-100 font-medium text-gray-700;
+  @apply bg-gray-800 font-medium text-gray-100;
+}
+
+/* React Tabs */
+.tabList {
+  @apply flex items-center justify-center gap-3 border-b pt-5 text-3xl font-bold;
+}
+
+.tabItem {
+  @apply cursor-pointer px-5 py-1.5 transition-colors duration-300 hover:text-gray-600;
+}
+
+/* Form */
+.label {
+  @apply grid gap-3;
+}
+.label-text {
+  @apply text-xs font-black uppercase text-slate-200;
+}
+.input {
+  @apply border-0 border-b border-gray-400 bg-transparent px-0.5 transition-colors duration-300 focus:border-gray-100 focus:ring-0;
 }
