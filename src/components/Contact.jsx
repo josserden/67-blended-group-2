@@ -1,6 +1,5 @@
 import PropTypes from 'prop-types';
 import { Button } from 'components/Button';
-// import cn from 'classnames';
 
 import { generateRandomStatus } from 'utils/generateRandomStatus';
 import { getCurrentClass } from 'utils/getCurrentClass';
