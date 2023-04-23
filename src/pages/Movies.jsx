@@ -1,3 +1,5 @@
+import Box from '@mui/material/Box';
+import Pagination from '@mui/material/Pagination';
 import { useFetchSearchMovies } from 'hooks/useFetchSearchMovies';
 import { FcSearch } from 'react-icons/fc';
 
@@ -6,7 +8,14 @@ import MoviesItems from 'components/MoviesItems/MoviesItems';
 import Wrapper from 'components/Wrapper/Wrapper';
 
 const Movies = () => {
-  const { movies, location, isError, handleSubmit } = useFetchSearchMovies();
+  const {
+    movies,
+    totalResults,
+    location,
+    isError,
+    handleSubmit,
+    handleChange,
+  } = useFetchSearchMovies();
 
   if (isError) return <Error />;
 
@@ -30,6 +39,25 @@ const Movies = () => {
       </form>
 
       {movies && <MoviesItems movies={movies} location={location} />}
+
+      {totalResults > 1 && (
+        <Box
+          sx={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            py: '20px',
+          }}
+        >
+          <Pagination
+            count={totalResults}
+            color="primary"
+            variant="outlined"
+            shape="rounded"
+            onChange={handleChange}
+          />
+        </Box>
+      )}
     </Wrapper>
   );
 };

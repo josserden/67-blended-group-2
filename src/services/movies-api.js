@@ -10,8 +10,10 @@ export const fetchTrendingMovie = async () => {
   return data;
 };
 
-export const fetchSearchMovie = async query => {
-  const { data } = await axios.get(`/search/movie?&query=${query}`);
+export const fetchSearchMovie = async (query, page) => {
+  const { data } = await axios.get(
+    `/search/movie?&query=${query}&page=${page}`
+  );
   return data;
 };
 

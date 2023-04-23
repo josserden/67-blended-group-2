@@ -6,6 +6,8 @@ import { fetchSearchMovie } from 'services/movies-api';
 
 export const useFetchSearchMovies = () => {
   const [movies, setMovies] = useState();
+  const [page, setPage] = useState(1);
+  const [totalResults, setTotalResults] = useState(0);
   const [isError, setIsError] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
   const query = searchParams.get('query' ?? '');
@@ -17,20 +19,22 @@ export const useFetchSearchMovies = () => {
 
     (async () => {
       try {
-        const { results } = await fetchSearchMovie(query);
+        const { results, total_pages } = await fetchSearchMovie(query, page);
 
         if (!results.length) {
           toast.error('There are no movies for your request.');
           return;
         }
 
+        setTotalResults(total_pages);
         setMovies(results);
+        setPage(page);
       } catch (error) {
         console.error(error);
         setIsError(true);
       }
     })();
-  }, [query]);
+  }, [page, query]);
 
   const handleSubmit = e => {
     e.preventDefault();
@@ -49,10 +53,18 @@ export const useFetchSearchMovies = () => {
     el.reset();
   };
 
+  const handleChange = (event, value) => {
+    toast.success(`Page ${value} was loaded`);
+    setPage(value);
+  };
+
   return {
     movies,
+    page,
     location,
     isError,
+    totalResults,
     handleSubmit,
+    handleChange,
   };
 };
