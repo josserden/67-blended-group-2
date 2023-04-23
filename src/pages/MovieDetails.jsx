@@ -4,9 +4,21 @@ import { useFetchDetailsMovie } from 'hooks/useFetchDetailsMovie';
 import { ROUTES } from 'utils/routes';
 
 import Button from '@mui/material/Button';
+import ButtonGroup from '@mui/material/ButtonGroup';
 
 import Error from 'components/Error/Error';
 import Wrapper from 'components/Wrapper/Wrapper';
+
+const subPages = [
+  {
+    name: 'cast',
+    path: ROUTES.CAST,
+  },
+  {
+    name: 'reviews',
+    path: ROUTES.REVIEWS,
+  },
+];
 
 const BASE_URL = 'http://image.tmdb.org/t/p/w500';
 
@@ -59,25 +71,16 @@ const MovieDetails = () => {
               Additional information
             </p>
 
-            <ul>
-              <li>
-                <Link
-                  to="cast"
-                  className="ml-5 hover:text-green-800 focus:text-green-800 text-xl"
-                >
-                  Cast
-                </Link>
-              </li>
-
-              <li>
-                <Link
-                  to="reviews"
-                  className="ml-5 hover:text-green-800 focus:text-green-800 text-xl"
-                >
-                  Reviews
-                </Link>
-              </li>
-            </ul>
+            <ButtonGroup
+              variant="contained"
+              aria-label="outlined primary button group"
+            >
+              {subPages.map(({ name, path }) => (
+                <Button key={name} component={Link} to={path}>
+                  {name}
+                </Button>
+              ))}
+            </ButtonGroup>
           </div>
         </>
       )}
