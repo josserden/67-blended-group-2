@@ -1,10 +1,11 @@
 import { Link, Outlet } from 'react-router-dom';
-import { RxArrowLeft } from 'react-icons/rx';
+
 import { useFetchDetailsMovie } from 'hooks/useFetchDetailsMovie';
 import { ROUTES } from 'utils/routes';
 
 import Button from '@mui/material/Button';
 import ButtonGroup from '@mui/material/ButtonGroup';
+import { RxArrowLeft } from 'react-icons/rx';
 
 import Error from 'components/Error/Error';
 import Wrapper from 'components/Wrapper/Wrapper';
