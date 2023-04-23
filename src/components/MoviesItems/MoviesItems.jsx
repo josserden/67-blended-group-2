@@ -30,73 +30,52 @@ const MoviesItems = ({ movies, location }) => {
   const to = location.pathname;
 
   return (
-    <>
-      <Grid
-        container
-        spacing={{ xs: 2, md: 3 }}
-        columns={{ xs: 4, sm: 8, md: 12 }}
-      >
-        {movies.map(({ id, poster_path, title }) => (
-          <Grid xs={2} sm={4} md={4} key={id}>
-            <Item>
-              <Link
-                key={id}
-                to={to !== ROUTES.HOME ? `${id}` : `${ROUTES.MOVIES}/${id}`}
-                state={{ from: locationItem }}
-              >
-                <img
-                  src={poster_path ? BASE_URL + poster_path : defaultImg}
-                  alt={title}
-                  sx={{
-                    width: '100%',
-                    height: '100%',
-                    objectFit: 'cover',
-                  }}
-                />
-                <Box
-                  sx={{
-                    p: '10px',
-                  }}
-                >
-                  <Typography
-                    variant="subtitle1"
-                    component="p"
-                    gutterBottom
-                    noWrap
-                    sx={{
-                      color: 'gray',
-                      fontSize: '1rem',
-                      fontWeight: 700,
-                    }}
-                  >
-                    {title}
-                  </Typography>
-                </Box>
-              </Link>
-            </Item>
-          </Grid>
-        ))}
-      </Grid>
-      {/* <ul className="mb-5 flex flex-wrap">
-        {movies.map(({ id, poster_path, title }) => (
-          <Link
-            key={id}
-            to={to !== ROUTES.HOME ? `${id}` : `${ROUTES.MOVIES}/${id}`}
-            state={{ from: locationItem }}
-            className="hover:text-stone-400  border border-black text-center ml-10 mb-5 rounded"
-          >
-            <li>
+    <Grid
+      container
+      spacing={{ xs: 2, md: 3 }}
+      columns={{ xs: 4, sm: 8, md: 12 }}
+    >
+      {movies.map(({ id, poster_path, title }) => (
+        <Grid xs={2} sm={4} md={4} key={id}>
+          <Item>
+            <Link
+              key={id}
+              to={to !== ROUTES.HOME ? `${id}` : `${ROUTES.MOVIES}/${id}`}
+              state={{ from: locationItem }}
+            >
               <img
                 src={poster_path ? BASE_URL + poster_path : defaultImg}
                 alt={title}
-                width="200"
+                sx={{
+                  width: '100%',
+                  height: '100%',
+                  objectFit: 'cover',
+                }}
               />
-              <p className="ml-5 mt-1 w-40 h-24">{title}</p>
-            </li>
-          </Link>
-        ))}
-      </ul> */}
-    </>
+              <Box
+                sx={{
+                  p: '10px',
+                }}
+              >
+                <Typography
+                  variant="subtitle1"
+                  component="p"
+                  gutterBottom
+                  noWrap
+                  sx={{
+                    color: 'gray',
+                    fontSize: '1rem',
+                    fontWeight: 700,
+                  }}
+                >
+                  {title}
+                </Typography>
+              </Box>
+            </Link>
+          </Item>
+        </Grid>
+      ))}
+    </Grid>
   );
 };
 export default MoviesItems;
