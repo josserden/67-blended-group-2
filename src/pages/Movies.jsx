@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useSearchParams, useLocation } from 'react-router-dom';
 import { toast } from 'react-hot-toast';
-import {FcSearch} from 'react-icons/fc'
+import { FcSearch } from 'react-icons/fc';
 import { fetchSearchMovie } from 'services/movies-api';
 import MoviesItems from 'components/MoviesItems/MoviesItems';
 
@@ -13,6 +13,7 @@ const Movies = () => {
 
   useEffect(() => {
     if (!query) return;
+
     (async () => {
       try {
         const { results } = await fetchSearchMovie(query);
@@ -44,7 +45,7 @@ const Movies = () => {
 
   return (
     <>
-      <form onSubmit={handleSubmit} className='flex justify-center'>
+      <form onSubmit={handleSubmit} className="flex justify-center">
         <input
           type="text"
           placeholder=" Search movies"
@@ -56,7 +57,7 @@ const Movies = () => {
           type="submit"
           className="bg-blue-300 p-1 ml-2 text-white hover:text-stone-200 rounded h-8 w-12 flex justify-center items-center mt-0.5"
         >
-          <FcSearch/>
+          <FcSearch />
         </button>
       </form>
       {movies && <MoviesItems movies={movies} location={location} />}

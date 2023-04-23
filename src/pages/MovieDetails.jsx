@@ -1,9 +1,9 @@
 import { useState, useEffect, useRef } from 'react';
 import { Link, Outlet, useParams, useLocation } from 'react-router-dom';
 import { toast } from 'react-hot-toast';
-import {RxArrowLeft} from 'react-icons/rx'
+import { RxArrowLeft } from 'react-icons/rx';
 import { fetchDetailsMovie } from 'services/movies-api';
-import Loader from 'components/utils/Loader';
+import Loader from 'components/Loader/Loader';
 
 const BASE_URL = 'http://image.tmdb.org/t/p/w500';
 
@@ -33,10 +33,11 @@ const MovieDetails = () => {
     movies;
   return (
     <>
-      <Link
-        to={backLocation.current}
-      >
-     <span className=" ml-3 flex hover:text-stone-200 bg-blue-300 p-1 text-white  rounded max-w-[8%] items-center"><RxArrowLeft className='mr-1'/>Go Back</span>
+      <Link to={backLocation.current}>
+        <span className=" ml-3 flex hover:text-stone-200 bg-blue-300 p-1 text-white  rounded max-w-[8%] items-center">
+          <RxArrowLeft className="mr-1" />
+          Go Back
+        </span>
       </Link>
       {poster_path && (
         <>
@@ -86,4 +87,3 @@ const MovieDetails = () => {
 };
 
 export default MovieDetails;
-

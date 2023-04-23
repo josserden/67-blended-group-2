@@ -3,7 +3,7 @@ import { useLocation } from 'react-router-dom';
 import { toast } from 'react-hot-toast';
 import { fetchTrendingMovie } from 'services/movies-api';
 import MoviesItems from 'components/MoviesItems/MoviesItems';
-import Loader from 'components/utils/Loader';
+import Loader from 'components/Loader/Loader';
 
 const Home = () => {
   const [movies, setMovies] = useState([]);
