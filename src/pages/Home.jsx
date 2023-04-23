@@ -1,42 +1,23 @@
-import { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
-import { toast } from 'react-hot-toast';
-import { fetchTrendingMovie } from 'services/movies-api';
+import Typography from '@mui/material/Typography';
+import { useFetchTrendingMovies } from 'hooks/useFetchTrendingMovies';
+
 import MoviesItems from 'components/MoviesItems/MoviesItems';
-import Loader from 'components/Loader/Loader';
+import Wrapper from 'components/Wrapper/Wrapper';
+import Error from 'components/Error/Error';
 
 const Home = () => {
-  const [movies, setMovies] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const location = useLocation();
+  const { movies, location, isError } = useFetchTrendingMovies();
 
-  useEffect(() => {
-    (async () => {
-      setIsLoading(true);
-      try {
-        const { results } = await fetchTrendingMovie();
-        if (!results.length) {
-          toast.error('Movie not found');
-          setIsLoading(false);
-          return;
-        }
-        setMovies(results);
-        setIsLoading(false);
-      } catch (error) {
-        toast.error(
-          `${error.message}. Movies loading failed, please try again`
-        );
-        setIsLoading(false);
-      }
-    })();
-  }, []);
+  if (isError) return <Error />;
 
   return (
-    <>
-      <h1 className="font-bold text-4xl mb-5 text-center">Trending Movies</h1>
+    <Wrapper>
+      <Typography component="h1" variant="h4" gutterBottom align="center">
+        Trending Movies
+      </Typography>
+
       <MoviesItems movies={movies} location={location} />
-      {isLoading && <Loader />}
-    </>
+    </Wrapper>
   );
 };
 

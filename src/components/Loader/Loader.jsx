@@ -1,16 +1,31 @@
 import { Dna } from 'react-loader-spinner';
+
+import useMediaQuery from '@mui/material/useMediaQuery';
+import Backdrop from '@mui/material/Backdrop';
+
 const Loader = () => {
+  const isMobile = useMediaQuery('(max-width:600px)');
+
   return (
-    <div className="flex justify-center">
+    <Backdrop
+      open={true}
+      sx={{
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        minHeight: '100vh',
+        color: '#fff',
+        zIndex: theme => theme.zIndex.drawer + 1,
+      }}
+    >
       <Dna
         visible={true}
-        height="80"
-        width="80"
+        height="200"
+        width={isMobile ? '200' : '300'}
         ariaLabel="dna-loading"
-        wrapperStyle={{}}
         wrapperClass="dna-wrapper"
       />
-    </div>
+    </Backdrop>
   );
 };
 
