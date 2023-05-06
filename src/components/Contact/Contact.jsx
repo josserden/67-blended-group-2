@@ -4,17 +4,18 @@ import Button from '@mui/material/Button';
 import TableCell from '@mui/material/TableCell';
 import TableRow from '@mui/material/TableRow';
 
-export const Contact = ({ id, name, number }) => {
+export const Contact = ({ id, range, name, number }) => {
   return (
     <TableRow
       sx={{
         '&:last-child td, &:last-child th': { border: 0 },
       }}
+      id={id}
     >
-      <TableCell>{id}</TableCell>
-      <TableCell>{name}</TableCell>
-      <TableCell>{number}</TableCell>
-      <TableCell>
+      <TableCell align="left">{range}</TableCell>
+      <TableCell align="center">{name}</TableCell>
+      <TableCell align="right">{number}</TableCell>
+      <TableCell align="right">
         <Button variant="outlined">Delete</Button>
       </TableCell>
     </TableRow>
@@ -23,6 +24,7 @@ export const Contact = ({ id, name, number }) => {
 
 Contact.propTypes = {
   id: PropTypes.string.isRequired,
+  range: PropTypes.number.isRequired,
   name: PropTypes.string.isRequired,
   number: PropTypes.string.isRequired,
 };

@@ -9,7 +9,7 @@ export const PageWrapper = ({ children }) => {
     <Box
       component="section"
       sx={{
-        py: '40px',
+        py: 10,
       }}
     >
       <Container maxWidth="xl">{children}</Container>

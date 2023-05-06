@@ -6,7 +6,7 @@ import Button from '@mui/material/Button';
 import DialogActions from '@mui/material/DialogActions';
 import TextField from '@mui/material/TextField';
 
-export const Form = ({ onSubmit, handleClose }) => {
+export const Form = ({ handleClose }) => {
   const {
     control,
     handleSubmit,
@@ -15,7 +15,8 @@ export const Form = ({ onSubmit, handleClose }) => {
   } = useForm();
 
   const handleFormSubmit = data => {
-    onSubmit(data);
+    console.log(data);
+
     reset();
   };
 
@@ -72,7 +73,7 @@ export const Form = ({ onSubmit, handleClose }) => {
 
       <DialogActions>
         <Button onClick={handleClose}>Cancel</Button>
-        <Button type="submit" variant="contained" onSubmit={onSubmit}>
+        <Button type="submit" variant="contained">
           Create
         </Button>
       </DialogActions>
@@ -81,6 +82,5 @@ export const Form = ({ onSubmit, handleClose }) => {
 };
 
 Form.propTypes = {
-  onSubmit: PropTypes.func.isRequired,
-  handleClose: PropTypes.func.isRequired,
+  handleClose: PropTypes.func,
 };
