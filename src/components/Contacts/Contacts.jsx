@@ -20,7 +20,7 @@ const tableRows = [
   },
   {
     name: 'number',
-    align: 'right',
+    align: 'center',
   },
   {
     name: 'options',

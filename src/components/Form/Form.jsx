@@ -1,10 +1,12 @@
 import { Controller, useForm } from 'react-hook-form';
+import toast from 'react-hot-toast';
 import PropTypes from 'prop-types';
 
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import DialogActions from '@mui/material/DialogActions';
 import TextField from '@mui/material/TextField';
+import { useAddContactMutation } from 'redux/contactsApi';
 
 export const Form = ({ handleClose }) => {
   const {
@@ -14,10 +16,23 @@ export const Form = ({ handleClose }) => {
     reset,
   } = useForm();
 
-  const handleFormSubmit = data => {
-    console.log(data);
+  const [addContact] = useAddContactMutation();
 
-    reset();
+  const handleFormSubmit = async ({ name, phone }) => {
+    try {
+      await addContact({
+        name,
+        number: phone,
+      });
+
+      toast.success('Contact added successfully');
+
+      reset();
+      handleClose();
+    } catch {
+      console.error('error');
+      toast.error('Something went wrong');
+    }
   };
 
   return (
